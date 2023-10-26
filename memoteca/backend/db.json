@@ -1,0 +1,28 @@
+{
+  "pensamentos": [
+    {
+      "id": 1,
+      "conteudo": "Faça o que precisa ser feito, caso contrário, a vida irá te cobrar muito mais caro depois.",
+      "autoria": "Eder Doro",
+      "modelo": "modelo1"
+    },
+    {
+      "id": 2,
+      "conteudo": "Faça o que precisa ser feito, caso contrário, a vida irá te cobrar muito mais caro depois.",
+      "autoria": "Eder Doro",
+      "modelo": "modelo2"
+    },
+    {
+      "id": 3,
+      "conteudo": "De fato, tudo o que começa um dia irá terminar. Portanto, aproveite os momentos e as oportunidades que surgirem, para que não se arrependa das coisas que não fez ou não disse quando teve a chance...",
+      "autoria": "Victor Ribeiro",
+      "modelo": "modelo3"
+    },
+    {
+      "id": 4,
+      "conteudo": "Pensamento de Teste",
+      "autoria": "Victor Ribeiro",
+      "modelo": "modelo1"
+    }
+  ]
+}
