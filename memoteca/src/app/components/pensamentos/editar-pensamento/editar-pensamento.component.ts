@@ -1,19 +1,20 @@
+import { Router, ActivatedRoute } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
-import { Pensamento } from '../../pensamento';
 import { PensamentoService } from '../../pensamento.service';
-import { Router } from '@angular/router';
+import { Pensamento } from '../../pensamento';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
-  selector: 'app-criar-pensamento',
-  templateUrl: './criar-pensamento.component.html',
-  styleUrls: ['./criar-pensamento.component.css'],
+  selector: 'app-editar-pensamento',
+  templateUrl: './editar-pensamento.component.html',
+  styleUrls: ['./editar-pensamento.component.css'],
 })
-export class CriarPensamentoComponent implements OnInit {
+export class EditarPensamentoComponent implements OnInit {
   pensamento: Pensamento = {
+    id: 0,
     conteudo: '',
     autoria: '',
-    modelo: 'modelo1',
+    modelo: '',
     favorito: false
   };
 
@@ -22,31 +23,35 @@ export class CriarPensamentoComponent implements OnInit {
   constructor(
     private service: PensamentoService,
     private router: Router,
+    private route: ActivatedRoute,
     private formBuilder: FormBuilder
   ) {}
 
   ngOnInit(): void {
-    this.formulario = this.formBuilder.group({
+    const id = this.route.snapshot.paramMap.get('id');
+    this.service.buscarPorId(parseInt(id!)).subscribe((pensamento) => {
+      this.formulario = this.formBuilder.group({
+        id: [pensamento.id],
         conteudo: [
-          '',
+          pensamento.conteudo,
           Validators.compose([
             Validators.required,
             Validators.pattern(/(.|\s)*\S(.|\s)*/),
           ]),
         ],
         autoria: [
-          '',
+          pensamento.autoria,
           Validators.compose([Validators.required, Validators.minLength(3)]),
         ],
-        modelo: ['modelo1'],
-        favorito: [false]
+        modelo: [pensamento.modelo],
+        favorito: [pensamento.favorito]
       });
+    });
   }
 
-  criarPensamento() {
-    console.log(this.formulario.status);
+  editarPensamento() {
     if (this.formulario.valid) {
-      this.service.criar(this.formulario.value).subscribe(() => {
+      this.service.editar(this.pensamento).subscribe(() => {
         this.router.navigate(['/listarPensamento']);
       });
     }
@@ -59,8 +64,6 @@ export class CriarPensamentoComponent implements OnInit {
   habilitarBotao(): string {
     if (this.formulario.valid) {
       return 'botao';
-    } else {
-      return 'botao__desabilitado';
-    }
+    } else return 'botao__desabilitado';
   }
 }

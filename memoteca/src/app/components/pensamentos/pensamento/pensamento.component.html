@@ -1,18 +1,35 @@
-<div class="pensamento {{ pensamento.modelo }} ff-roboto-mono" [ngClass]="larguraPensamento()">
+<div
+  class="pensamento {{ pensamento.modelo }} ff-roboto-mono"
+  [ngClass]="larguraPensamento()"
+>
   <img
     src="../../../../assets/images/{{ pensamento.modelo }}.png"
     alt="Aspas coloridas"
   />
   <p class="conteudo">{{ pensamento.conteudo }}</p>
-  <p class="autoria"><b>{{ pensamento.autoria }}</b></p>
+  <p class="autoria">
+    <b>{{ pensamento.autoria }}</b>
+  </p>
   <div class="acoes">
+    <button class="botao-favorito">
+      <img
+        src="../../../../assets/images/{{ mudarIconeFavorito() }}"
+        (click)="atualizarFavoritos()"
+        alt="Ícone de favorito"
+        class="favorito"
+      />
+    </button>
     <button class="botao-editar">
       <img
         src="../../../../assets/images/icone-editar.png"
+        routerLink="/pensamentos/editarPensamento/{{ pensamento.id }}"
         alt="Ícone de editar"
       />
     </button>
-    <button class="botao-excluir">
+    <button
+      class="botao-excluir"
+      routerLink="/pensamentos/excluirPensamento/{{ pensamento.id }}"
+    >
       <img
         src="../../../../assets/images/icone-excluir.png"
         alt="Ícone de excluir"

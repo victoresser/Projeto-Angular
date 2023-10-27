@@ -4,25 +4,50 @@
       "id": 1,
       "conteudo": "Faça o que precisa ser feito, caso contrário, a vida irá te cobrar muito mais caro depois.",
       "autoria": "Eder Doro",
-      "modelo": "modelo1"
-    },
-    {
-      "id": 2,
-      "conteudo": "Faça o que precisa ser feito, caso contrário, a vida irá te cobrar muito mais caro depois.",
-      "autoria": "Eder Doro",
-      "modelo": "modelo2"
+      "modelo": "modelo1",
+      "favorito": false
     },
     {
       "id": 3,
       "conteudo": "De fato, tudo o que começa um dia irá terminar. Portanto, aproveite os momentos e as oportunidades que surgirem, para que não se arrependa das coisas que não fez ou não disse quando teve a chance...",
       "autoria": "Victor Ribeiro",
-      "modelo": "modelo3"
+      "modelo": "modelo3",
+      "favorito": false
     },
     {
+      "conteudo": "Que a força esteja com você",
+      "autoria": "Mestre Yoda",
+      "modelo": "modelo1",
       "id": 4,
-      "conteudo": "Pensamento de Teste",
-      "autoria": "Victor Ribeiro",
-      "modelo": "modelo1"
+      "favorito": false
+    },
+    {
+      "conteudo": "Continue a codar... Continue a codar...",
+      "autoria": "Dory Programadora",
+      "modelo": "modelo2",
+      "id": 5,
+      "favorito": false
+    },
+    {
+      "conteudo": "Reclamas da vida, mas sem ela não vives.",
+      "autoria": "Mestre Yoda",
+      "modelo": "modelo1",
+      "id": 6,
+      "favorito": false
+    },
+    {
+      "conteudo": "Na minha máquina funciona!",
+      "autoria": "Técnico de TI",
+      "modelo": "modelo1",
+      "id": 7,
+      "favorito": false
+    },
+    {
+      "conteudo": "Você trabalha com Programação? Pode concertar minha impressora?",
+      "autoria": "Usuário",
+      "modelo": "modelo2",
+      "id": 8,
+      "favorito": false
     }
   ]
 }
