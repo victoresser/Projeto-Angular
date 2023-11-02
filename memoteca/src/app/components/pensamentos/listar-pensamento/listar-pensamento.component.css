@@ -82,6 +82,7 @@ img {
   display: flex;
   flex-direction: row;
   justify-content: center;
+
 }
 .botoes button {
   margin-left: 10px;
