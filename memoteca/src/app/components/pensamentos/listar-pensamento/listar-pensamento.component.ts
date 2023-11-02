@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Pensamento } from '../../pensamento';
 import { PensamentoService } from '../../pensamento.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-listar-pensamento',
@@ -13,12 +14,15 @@ export class ListarPensamentoComponent implements OnInit {
   haMaisPensamentos: boolean = true;
   paginaAtual: number = 1;
   filtro: string = '';
+  favoritos: boolean = false;
+  listaFavoritos: Pensamento[] = [];
+  titulo: string = 'Meu Mural';
 
-  constructor(private service: PensamentoService) {}
+  constructor(private service: PensamentoService, private router: Router) {}
 
   ngOnInit(): void {
     this.service
-      .listar(this.paginaAtual, this.filtro)
+      .listar(this.paginaAtual, this.filtro, this.favoritos)
       .subscribe((x) => {
         this.listaPensamentos = x;
       });
@@ -26,7 +30,7 @@ export class ListarPensamentoComponent implements OnInit {
 
   carregarMaisPensamentos() {
     this.service
-      .listar(++this.paginaAtual, this.filtro)
+      .listar(++this.paginaAtual, this.filtro, this.favoritos)
       .subscribe((x) => {
         this.listaPensamentos.push(...x);
         if (!x.length) {
@@ -39,9 +43,30 @@ export class ListarPensamentoComponent implements OnInit {
     this.haMaisPensamentos = true;
     this.paginaAtual = 1;
     this.service
-      .listar(this.paginaAtual, this.filtro)
-      .subscribe(x => {
+      .listar(this.paginaAtual, this.filtro, this.favoritos)
+      .subscribe((x) => {
         this.listaPensamentos = x;
+      });
+  }
+
+  recarregarComponente() {
+    this.favoritos = false;
+    this.paginaAtual = 1;
+    this.router.routeReuseStrategy.shouldReuseRoute = () => false;
+    this.router.onSameUrlNavigation = 'reload';
+    this.router.navigate([this.router.url]);
+  }
+
+  listarFavoritos() {
+    this.titulo = "Meus Favoritos"
+    this.favoritos = true;
+    this.haMaisPensamentos = true;
+    this.paginaAtual = 1;
+    this.service
+      .listar(this.paginaAtual, this.filtro, this.favoritos)
+      .subscribe((x) => {
+        this.listaPensamentos = x;
+        this.listaFavoritos = x;
       });
   }
 }
